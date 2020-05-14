@@ -10,8 +10,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                docker.build("jdk-mvn-test:${env.BUILD_ID}", "-v jenkins-mvn-cache:/root/.m2"). inside {
-                    sh 'mvn compile'
+                script {
+                    def imageName = "jdk-mvn-test:${env.BUILD_ID}"
+                    def options = '-v jenkins-mvn-cache:/root/.m2'
+
+                    docker.build(imageName, options).inside {
+                        sh 'mvn compile'
+                    }
                 }
             }
         }
