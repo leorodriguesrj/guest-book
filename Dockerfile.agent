@@ -1,0 +1,10 @@
+FROM openjdk:13
+
+WORKDIR /opt/app/source
+
+ADD . /opt/app/source
+
+RUN cd /opt/app \
+    && curl -s http://us.mirrors.quenda.co/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz | tar -xvz \
+    && apache-maven-3.6.3
+    

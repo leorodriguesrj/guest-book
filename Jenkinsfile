@@ -4,21 +4,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // def imageName = 'jdk-mvn-test'
-                    // def options = '-v jenkins-mvn-cache:/root/.m2'
-                    // def image = docker.build(imageName)
+                    def runOptions = '-v jenkins-mvn-cache:/root/.m2'
+                    def buildOptions = '-f Dockerfile.agent'
+                    def image = docker.build('jdk13-mvn-test', buildOptions)
 
-                    // image.withRun(options).inside {
-                    //     image.inside {
-                    //         sh 'mvn compile'
-                    //     }
-                    // }
-
-                    // def imageName = 'jdk-mvn-test'
-                    def options = '-v jenkins-mvn-cache:/root/.m2'
-                    def image = docker.image('openjdk:13')
-
-                    image.withRun(options) {
+                    image.withRun(runOptions) {
                         image.inside {
                             sh 'mvn compile'
                         }
