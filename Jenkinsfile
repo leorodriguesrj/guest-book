@@ -1,7 +1,8 @@
 pipeline {
     agent {
+        dockerfile true
         docker {
-            image 'maven:3-alpine'
+            // image 'maven:3-alpine'
             args '-v jenkins-mvn-cache:/root/.m2'
         }
     }
