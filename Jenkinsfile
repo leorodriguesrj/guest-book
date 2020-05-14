@@ -6,10 +6,10 @@ pipeline {
                 script {
                     def runOptions = '-v jenkins-mvn-cache:/root/.m2'
                     def buildOptions = '-f Dockerfile.agent .'
-                    docker.build('jdk13-mvn-test', buildOptions)
+                    def image = docker.build('jdk13-mvn-test', buildOptions)
 
-                    docker.image('jdk13-mvn-test').withRun(runOptions) {
-                        docker.image('jdk13-mvn-test').inside {
+                    image.withRun(runOptions) {
+                        image.inside {
                             sh 'mvn compile'
                         }
                     }
