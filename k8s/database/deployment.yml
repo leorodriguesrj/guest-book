@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guest-book-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guest-book
+      role: database
+  template:
+    metadata:
+      labels:
+        app: guest-book
+        role: database
+    spec:
+      containers:
+        - name: guest-book-db
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+              name: gwdb-port
+          volumeMounts:
+            - name: guest-book-db-storage
+              mountPath: /data/db
+      volumes:
+        - name: guest-book-db-storage
+          persistentVolumeClaim:
+            claimName: guest-book-db-pvc

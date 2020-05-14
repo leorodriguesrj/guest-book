@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: guest-book-env
+data:
+    MONGODB_HOST: guest-book-db
+    MONGODB_PORT: "27017"

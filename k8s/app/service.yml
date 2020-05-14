@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: guest-book-be
+spec:
+  selector:
+    app: guest-book
+    role: backend
+  ports:
+    - port: 8080
+      targetPort: 3000
+      protocol: TCP
+      name: http

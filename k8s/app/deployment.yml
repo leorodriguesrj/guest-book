@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guest-book
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guest-book
+      role: backend
+  template:
+    metadata:
+      labels:
+        app: guest-book
+        role: backend
+    spec:
+      containers:
+        - name: guest-book
+          image: leorodrigues/guest-book-spring:0.0.1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: guest-book-env
+                  key: MONGODB_HOST

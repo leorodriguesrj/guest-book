@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: guest-book-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /guest-book/?(.*)
+            backend:
+              serviceName: guest-book-be
+              servicePort: 8080
+
