@@ -6,6 +6,7 @@ pipeline {
     //         args '-v jenkins-mvn-cache:/root/.m2'
     //     }
     // }
+    agent any
     stages {
         stage('Build') {
             steps {
