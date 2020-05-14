@@ -16,7 +16,7 @@ pipeline {
 
                     // def imageName = 'jdk-mvn-test'
                     def options = '-v jenkins-mvn-cache:/root/.m2'
-                    def image = docker.image(imageName)
+                    def image = docker.image('openjdk:13')
 
                     image.withRun(options) {
                         image.inside {
