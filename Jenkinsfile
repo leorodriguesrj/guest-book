@@ -44,11 +44,6 @@ pipeline {
         }
 
         stage('Homologation Deploy') {
-            when {
-                expression {
-                    return env.GIT_BRANCH == 'origin/develop'
-                }
-             }
             steps {
                 sshPublisher(
                     continueOnError: false,
@@ -69,45 +64,6 @@ pipeline {
                 )
             }
         }
-
-        stage('Confirm production') {
-            when {
-                expression {
-                    return env.GIT_BRANCH == 'origin/master'
-                }
-            }
-            steps {
-                input 'Proceed to production?'
-            }
-        }
-
-        stage('Production Deploy') {
-            when {
-                expression {
-                    return env.GIT_BRANCH == 'origin/master'
-                }
-            }
-            steps {
-                sshPublisher(
-                    continueOnError: false,
-                    failOnError: true,
-                    publishers: [
-                        sshPublisherDesc(
-                            configName: "production",
-                            verbose: true,
-                            transfers: [
-                                sshTransfer(
-                                    sourceFiles: "target\\*.jar  target\\*.bat",
-                                    remoteDirectory: ".\\${ARTIFACT_ID}",
-                                    removePrefix: "target"
-                                )
-                            ]
-                        )
-                    ]
-                )
-            }
-        }
-    }
 
     post {
         always {
