@@ -1,5 +1,10 @@
 server:
   port: 3000
+  ssl:
+    enabled: ${SSL_ENABLED:false}
+    key-store: "${SSL_KEYSTORE:/usr/share/key-stores/osk-keytore.jks}"
+    key-store-password: 2o0s2k0
+    keyStoreType: JKS
 
 spring:
   data:
