@@ -1,5 +1,5 @@
 server:
-  port: 3000
+  port: 8150
   ssl:
     enabled: ${SSL_ENABLED:false}
     key-store: "${SSL_KEYSTORE:/usr/share/key-stores/osk-keytore.jks}"
