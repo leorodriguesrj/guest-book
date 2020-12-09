@@ -32,8 +32,6 @@ pipeline {
                     def artifactPath = "%basepath%\\${ARTIFACT_NAME}"
                     def lines = [
                         "@echo off",
-                        "set SSL_ENABLED=true",
-                        "set SSL_KEYSTORE=c:\\Program files\\KeyStores\\osklen.com.br.p12",
                         "set basepath=C:\\RunningServices\\${ARTIFACT_ID}",
                         "set JAVA_HOME=\"C:\\Program Files\\Java\\jdk-11.0.8\"",
                         "set PATH=%JAVA_HOME%\\bin;%PATH%"
