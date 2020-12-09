@@ -4,7 +4,7 @@ server:
     enabled: ${SSL_ENABLED:false}
     key-store: "${SSL_KEYSTORE:/usr/share/key-stores/osk-keytore.p12}"
     key-password: "${SSL_KEY_PASSWORD:change-me}"
-    key-store-password: "{SSL_KEYSTORE_PASSWORD:change-me}"
+    key-store-password: "${SSL_KEYSTORE_PASSWORD:change-me}"
     keyStoreType: PKCS12
 
 spring:
